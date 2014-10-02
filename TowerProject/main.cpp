@@ -8,6 +8,7 @@
  *  Heyan Huang
  *
  *  Version 0.0.1
+ *
  */
 
 #include "mainwindow.h"
