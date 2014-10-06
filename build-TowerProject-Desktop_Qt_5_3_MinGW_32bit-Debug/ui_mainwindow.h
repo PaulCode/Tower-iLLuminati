@@ -68,7 +68,7 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         actionExit->setText(QApplication::translate("MainWindow", "Exit", 0));
-        menuTower_Animator->setTitle(QApplication::translate("MainWindow", "Tower Animator", 0));
+        menuTower_Animator->setTitle(QApplication::translate("MainWindow", "File", 0));
     } // retranslateUi
 
 };

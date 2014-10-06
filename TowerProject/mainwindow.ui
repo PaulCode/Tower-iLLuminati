@@ -25,7 +25,7 @@
    </property>
    <widget class="QMenu" name="menuTower_Animator">
     <property name="title">
-     <string>Tower Animator</string>
+     <string>File</string>
     </property>
     <addaction name="actionExit"/>
    </widget>
