@@ -19,6 +19,8 @@ public:
 private slots:
     void on_actionExit_triggered();
 
+    void on_ColorWheel_customContextMenuRequested(const QPoint &pos);
+
 private:
     Ui::MainWindow *ui;
 };
