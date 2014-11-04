@@ -13,8 +13,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    pixel.cpp \
+    grid.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    pixel.h \
+    grid.h
 
 FORMS    += mainwindow.ui
