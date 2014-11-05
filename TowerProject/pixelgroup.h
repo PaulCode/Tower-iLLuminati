@@ -4,6 +4,8 @@
 #include <QPoint>
 #include <vector>
 
+using namespace std;
+
 class PixelGroup
 {
 public:
@@ -11,7 +13,12 @@ public:
     PixelGroup Move(QPoint vector);
     PixelGroup Move(int x, int y);
 private:
-    vector <QColor, QPoint> group;
+    typedef struct pixel{
+        QColor color;
+        QPoint point;
+    } pixel;
+
+    vector <pixel> group;
 };
 
 #endif // PIXELGROUP_H
