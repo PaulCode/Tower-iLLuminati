@@ -15,10 +15,14 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     pixel.cpp \
-    grid.cpp
+    grid.cpp \
+    animation.cpp \
+    pixelgroup.cpp
 
 HEADERS  += mainwindow.h \
     pixel.h \
-    grid.h
+    grid.h \
+    animation.h \
+    pixelgroup.h
 
 FORMS    += mainwindow.ui
