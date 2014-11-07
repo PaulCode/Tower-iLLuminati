@@ -2,7 +2,8 @@
 #define PIXELGROUP_H
 #include <QColor>
 #include <QPoint>
-#include <vector>
+#include <QList>
+#include "pixel.h"
 
 using namespace std;
 
@@ -12,13 +13,10 @@ public:
     PixelGroup();
     PixelGroup Move(QPoint vector);
     PixelGroup Move(int x, int y);
+    void addPixel(Pixel p);
 private:
-    typedef struct pixel{
-        QColor color;
-        QPoint point;
-    } pixel;
-
-    vector <pixel> group;
+    QList <Pixel> group;
+    void setGroup(QList<Pixel> g);
 };
 
 #endif // PIXELGROUP_H
