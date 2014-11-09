@@ -11,8 +11,11 @@ class PixelGroup
 {
 public:
     PixelGroup();
-    PixelGroup Move(QPoint vector);
-    PixelGroup Move(int x, int y);
+    PixelGroup moveNew(QPoint vector);
+    PixelGroup moveNew(int x, int y);
+    void move(QPoint vector);
+    void move(int x, int y);
+    int getSize();
     void addPixel(Pixel p);
 private:
     QList <Pixel> group;

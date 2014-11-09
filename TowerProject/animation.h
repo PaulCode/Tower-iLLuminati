@@ -3,7 +3,7 @@
 #include <QPoint>
 #include <QMap>
 
-#include <pixelgroup.h>
+#include "pixelgroup.h"
 using namespace std;
 
 class Animation

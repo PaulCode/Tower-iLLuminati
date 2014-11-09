@@ -18,6 +18,7 @@ public:
     void applyVector(QPoint p);
     QPoint getPoint();
     QColor getColor();
+    void operator = (const Pixel& other);
 private:
     QPoint point;
     QColor color;

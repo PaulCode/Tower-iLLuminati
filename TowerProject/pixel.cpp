@@ -51,3 +51,8 @@ void Pixel::applyVector(int x, int y){
 void Pixel::applyVector(QPoint p){
     point += p;
 }
+
+void Pixel::operator = (const Pixel& other){
+    point = other.point;
+    color = other.color;
+}
