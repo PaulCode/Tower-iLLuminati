@@ -199,7 +199,7 @@ Buttons::Buttons(QWidget *parent)
     void (QSpinBox:: *spinBoxSignal)(int) = &QSpinBox::valueChanged;
     QObject::connect(spinBox, spinBoxSignal, slider, &QSlider::setValue);
     spinBox->setValue(25);
-    scrLeft = new QPushButton(QIcon(":/images/leftI"),tr("ScrollLeft "),this);
+    scrLeft = new QPushButton(QIcon(":/images/leftI"),tr("ScrollLeft"),this);
     scrRight = new QPushButton(QIcon(":/images/rightI"),tr("ScrollRight"),this);
     scrLeft->setFixedSize(90,30);
     scrRight->setFixedSize(90,30);
@@ -309,15 +309,15 @@ Buttons::Buttons(QWidget *parent)
     */
     QGridLayout* direction = new QGridLayout();
     direction->setSpacing(5);
-    dir[0][0] = new QPushButton(QIcon(":/images/upleftI"), tr(""), this);
-    dir[0][1] = new QPushButton(QIcon(":/images/upI"), tr(""), this);
-    dir[0][2] = new QPushButton(QIcon(":/images/uprightI"), tr(""), this);
-    dir[1][0] = new QPushButton(QIcon(":/images/leftI"), tr(""), this);
+    dir[0][0] = new QPushButton(QIcon("./images/upleftI"), tr(""), this);
+    dir[0][1] = new QPushButton(QIcon("./images/upI"), tr(""), this);
+    dir[0][2] = new QPushButton(QIcon("./images/uprightI"), tr(""), this);
+    dir[1][0] = new QPushButton(QIcon("./images/leftI"), tr(""), this);
     dir[1][1] = new QPushButton();
-    dir[1][2] = new QPushButton(QIcon(":/images/rightI"), tr(""), this);
-    dir[2][0] = new QPushButton(QIcon(":/images/downleftI"), tr(""), this);
-    dir[2][1] = new QPushButton(QIcon(":/images/downI"), tr(""), this);
-    dir[2][2] = new QPushButton(QIcon(":/images/downrightI"), tr(""), this);
+    dir[1][2] = new QPushButton(QIcon("./images/rightI"), tr(""), this);
+    dir[2][0] = new QPushButton(QIcon("./images/downleftI"), tr(""), this);
+    dir[2][1] = new QPushButton(QIcon("./images/downI"), tr(""), this);
+    dir[2][2] = new QPushButton(QIcon("./images/downrightI"), tr(""), this);
     dir[3][0] = new QPushButton();
     dir[3][1] = new QPushButton();
     dir[3][2] = new QPushButton();
@@ -670,6 +670,8 @@ void Buttons::addFrame(QGridLayout* grid) {
 
 void Buttons::setColor(QPushButton* ptrBtn[][6], int i, int j) {
     QPalette pal;
+
+
     pal = ptrBtn[i][j]->palette();
     pal.setColor(QPalette::Button, newColor);
     ptrBtn[i][j]->setPalette(pal);

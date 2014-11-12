@@ -33,4 +33,8 @@ HEADERS  += mainwindow.h \
     myGridLayout.h \
     verticalbox.h
 
-FORMS    += mainwindow.ui
+FORMS    +=
+
+RESOURCES += \
+    res.qrc \
+    rsc_pic/images.qrc
