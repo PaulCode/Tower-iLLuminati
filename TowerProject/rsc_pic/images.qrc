@@ -1,0 +1,90 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="doc-open">open.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="doc-close">document-close.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="searchI">search.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="copyI">copy.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="pasteI">paste.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="leftI">left.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="rightI">right.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="clearI">Clear.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="duplicateI">Duplicate.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="minusI">minus.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="pauseI">PauseHS.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="playhsI">PlayHS.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="plusI">plus.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="stophsI">StopHS.png</file>
+    </qresource>
+
+    <qresource prefix="/images">
+        <file alias="upI">up.jpg</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="downI">down.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="upleftI">upleft.jpg</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="uprightI">upright.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="downleftI">downleft.jpg</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="downrightI">downright.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="saveI">save.png</file>
+    </qresource>
+<!--
+don't needs these images any more
+    <qresource prefix="/images">
+        <file alias="e">e.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="h">h.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="m">m.png</file>
+    </qresource>
+    <qresource prefix="/pic/images">
+        <file alias="p">p.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="r">r.png</file>
+    </qresource>
+-->
+    <qresource prefix="/images">
+        <file alias="color">color.jpg</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="down">down2.png</file>
+    </qresource>
+</RCC>

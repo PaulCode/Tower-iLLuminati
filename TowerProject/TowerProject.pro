@@ -17,12 +17,20 @@ SOURCES += main.cpp\
     pixel.cpp \
     grid.cpp \
     animation.cpp \
-    pixelgroup.cpp
+    pixelgroup.cpp \
+    buttons.cpp \
+    colorwheel.cpp \
+    myGridLayout.cpp \
+    verticalbox.cpp
 
 HEADERS  += mainwindow.h \
     pixel.h \
     grid.h \
     animation.h \
-    pixelgroup.h
+    pixelgroup.h \
+    buttons.h \
+    colorwheel.h \
+    myGridLayout.h \
+    verticalbox.h
 
 FORMS    += mainwindow.ui
