@@ -170,11 +170,11 @@ Buttons::Buttons(QWidget *parent)
     hbox10->addLayout(gridView[2]);  // R
     hbox10->addLayout(gridView[4]);
     /*
-      QPushButton *img1 = new QPushButton(QIcon(":/images/m"),tr(" "),this);
-      QPushButton *img2 = new QPushButton(QIcon(":/images/h"),tr(" "),this);
-      QPushButton *img3 = new QPushButton(QIcon(":/images/e"),tr(" "),this);
-      QPushButton *img4 = new QPushButton(QIcon(":/images/p"),tr(" "),this);
-      QPushButton *img5 = new QPushButton(QIcon(":/images/r"),tr(" "),this);
+      QPushButton *img1 = new QPushButton(QIcon(":/m"),tr(" "),this);
+      QPushButton *img2 = new QPushButton(QIcon(":/h"),tr(" "),this);
+      QPushButton *img3 = new QPushButton(QIcon(":/e"),tr(" "),this);
+      QPushButton *img4 = new QPushButton(QIcon(":/p"),tr(" "),this);
+      QPushButton *img5 = new QPushButton(QIcon(":/r"),tr(" "),this);
       img1->setFixedSize(120,280);
       img2->setFixedSize(120,280);
       img3->setFixedSize(120,280);
@@ -199,8 +199,8 @@ Buttons::Buttons(QWidget *parent)
     void (QSpinBox:: *spinBoxSignal)(int) = &QSpinBox::valueChanged;
     QObject::connect(spinBox, spinBoxSignal, slider, &QSlider::setValue);
     spinBox->setValue(25);
-    scrLeft = new QPushButton(QIcon(":/images/leftI"),tr("ScrollLeft"),this);
-    scrRight = new QPushButton(QIcon(":/images/rightI"),tr("ScrollRight"),this);
+    scrLeft = new QPushButton(QIcon(":/leftI"),tr("ScrollLeft"),this);
+    scrRight = new QPushButton(QIcon(":/rightI"),tr("ScrollRight"),this);
     scrLeft->setFixedSize(90,30);
     scrRight->setFixedSize(90,30);
     hbox1->addWidget(scrLeft);
@@ -224,11 +224,11 @@ Buttons::Buttons(QWidget *parent)
     tedit->setFont(QFont ("Courier", 10));
     setHeight(wedit, 2);
     setHeight(tedit, 2);
-    //QPushButton *wbrow  = new QPushButton(QIcon(":/images/doc-open"), tr("&Browse"), this);
+    //QPushButton *wbrow  = new QPushButton(QIcon(":/doc-open"), tr("&Browse"), this);
     //connect(wbrow, SIGNAL(released()), this, SLOT(wbrowBtnClicked()));
     //wbrow->setFixedSize(80, 30);
     //hboxw->addWidget(wbrow);
-    QPushButton *tbrow  = new QPushButton(QIcon(":/images/doc-open"), tr("&Browse"), this);
+    QPushButton *tbrow  = new QPushButton(QIcon(":/doc-open"), tr("&Browse"), this);
     tbrow->setFixedSize(80, 30);
     hboxw->addWidget(wav);
     hboxw->addWidget(wedit);
@@ -255,23 +255,23 @@ Buttons::Buttons(QWidget *parent)
 
     QHBoxLayout *hbox2 = new QHBoxLayout();
     /*
-      left = new QPushButton(QIcon(":/images/leftI"), tr(" Left "), this);
-      right = new QPushButton(QIcon(":/images/rightI"), tr("Right"), this);
-      up = new QPushButton(QIcon(":/images/upI"), tr("Up"), this);
-      down = new QPushButton(QIcon(":/images/downI"), tr("Down"), this);
-      upleft = new QPushButton(QIcon(":/images/upleftI"), tr("UpLeft"), this);
-      upright = new QPushButton(QIcon(":/images/uprightI"), tr("UpRight"), this);
-      downleft = new QPushButton(QIcon(":/images/downleftI"), tr("DownLeft"), this);
-      downright = new QPushButton(QIcon(":/images/downrightI"), tr("DownRight"), this);
+      left = new QPushButton(QIcon(":/leftI"), tr(" Left "), this);
+      right = new QPushButton(QIcon(":/rightI"), tr("Right"), this);
+      up = new QPushButton(QIcon(":/upI"), tr("Up"), this);
+      down = new QPushButton(QIcon(":/downI"), tr("Down"), this);
+      upleft = new QPushButton(QIcon(":/upleftI"), tr("UpLeft"), this);
+      upright = new QPushButton(QIcon(":/uprightI"), tr("UpRight"), this);
+      downleft = new QPushButton(QIcon(":/downleftI"), tr("DownLeft"), this);
+      downright = new QPushButton(QIcon(":/downrightI"), tr("DownRight"), this);
     */
-    save = new QPushButton(QIcon(":/images/saveI"), tr(" Save "), this);
-    play = new QPushButton(QIcon(":/images/playhsI"), tr(" Play "), this);
-    stop = new QPushButton(QIcon(":/images/stophsI"), tr(" Stop "), this);
-    pause = new QPushButton(QIcon(":/images/pauseI"), tr("Pause"), this);
-    plus = new QPushButton(QIcon(":/images/plusI"), tr(" Plus "), this);
-    minus = new QPushButton(QIcon(":/images/minusI"), tr("Minus"), this);
-    duplicate = new QPushButton(QIcon(":/images/duplicateI"), tr("Duplicate"), this);
-    clear = new QPushButton(QIcon(":/images/clearI"), tr("Clear"), this);
+    save = new QPushButton(QIcon(":/saveI"), tr(" Save "), this);
+    play = new QPushButton(QIcon(":/playhsI"), tr(" Play "), this);
+    stop = new QPushButton(QIcon(":/stophsI"), tr(" Stop "), this);
+    pause = new QPushButton(QIcon(":/pauseI"), tr("Pause"), this);
+    plus = new QPushButton(QIcon(":/plusI"), tr(" Plus "), this);
+    minus = new QPushButton(QIcon(":/minusI"), tr("Minus"), this);
+    duplicate = new QPushButton(QIcon(":/duplicateI"), tr("Duplicate"), this);
+    clear = new QPushButton(QIcon(":/clearI"), tr("Clear"), this);
     /*
       left->setFixedSize(40, 40);
       right->setFixedSize(40, 40);
@@ -309,15 +309,15 @@ Buttons::Buttons(QWidget *parent)
     */
     QGridLayout* direction = new QGridLayout();
     direction->setSpacing(5);
-    dir[0][0] = new QPushButton(QIcon(":/images/upleftI"), tr(""), this);
-    dir[0][1] = new QPushButton(QIcon(":/images/upI"), tr(""), this);
-    dir[0][2] = new QPushButton(QIcon(":/images/uprightI"), tr(""), this);
-    dir[1][0] = new QPushButton(QIcon(":/images/leftI"), tr(""), this);
+    dir[0][0] = new QPushButton(QIcon("./upleftI"), tr(""), this);
+    dir[0][1] = new QPushButton(QIcon("./upI"), tr(""), this);
+    dir[0][2] = new QPushButton(QIcon("./uprightI"), tr(""), this);
+    dir[1][0] = new QPushButton(QIcon("./leftI"), tr(""), this);
     dir[1][1] = new QPushButton();
-    dir[1][2] = new QPushButton(QIcon(":/images/rightI"), tr(""), this);
-    dir[2][0] = new QPushButton(QIcon(":/images/downleftI"), tr(""), this);
-    dir[2][1] = new QPushButton(QIcon(":/images/downI"), tr(""), this);
-    dir[2][2] = new QPushButton(QIcon(":/images/downrightI"), tr(""), this);
+    dir[1][2] = new QPushButton(QIcon("./rightI"), tr(""), this);
+    dir[2][0] = new QPushButton(QIcon("./downleftI"), tr(""), this);
+    dir[2][1] = new QPushButton(QIcon("./downI"), tr(""), this);
+    dir[2][2] = new QPushButton(QIcon("./downrightI"), tr(""), this);
     dir[3][0] = new QPushButton();
     dir[3][1] = new QPushButton();
     dir[3][2] = new QPushButton();
@@ -416,7 +416,7 @@ Buttons::Buttons(QWidget *parent)
     QLabel *curlabel = new QLabel(tr("Preview"));
     pre = new QPushButton();
     cur = new QPushButton();
-    //QPushButton *tmp = new QPushButton(QIcon(":/images/down"), tr(""),this);
+    //QPushButton *tmp = new QPushButton(QIcon(":/down"), tr(""),this);
     pre->setFixedSize(80,60);
     //pre->setFlat(true);   //invisible at beginning, but will show up later
     cur->setFixedSize(80,60);
@@ -435,13 +435,13 @@ Buttons::Buttons(QWidget *parent)
     // hboxRgb    
     QHBoxLayout *hbox11 = new QHBoxLayout();
     /*
-      QPushButton *color = new QPushButton(QIcon(":/images/color"), tr(""),this);
+      QPushButton *color = new QPushButton(QIcon(":/color"), tr(""),this);
       color->setFixedSize(150, 150);
       QGraphicsScene *scene = new QGraphicsScene();
       QGraphicsView *view;// = new QGraphicsView();
-      QGraphicsPixmapItem item(QPixmap(":/images/color"));
+      QGraphicsPixmapItem item(QPixmap(":/color"));
       view->addItem(&item);
-      QPixmap img = new QPixmap(":/images/color");
+      QPixmap img = new QPixmap(":/color");
       QLabel *imgl = new QLabel();
       imgl->setPixmap(img);
     */

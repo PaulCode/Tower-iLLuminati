@@ -36,5 +36,6 @@ HEADERS  += mainwindow.h \
 FORMS    +=
 
 RESOURCES += \
-    res.qrc \
     rsc_pic/images.qrc
+
+
