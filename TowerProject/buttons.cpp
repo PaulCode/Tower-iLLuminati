@@ -472,7 +472,15 @@ Buttons::Buttons(QWidget *parent)
         //mButton[i][j]->setStyleSheet("QPushButton{color:red;background-color:rgb(200,155,100)}");
         hbox8->addWidget(mButton[i]);
     }
-    mButton[0]->setStyleSheet("QPushButton{color:red;background-color:rgb(0,0,0)}");
+
+    QString temp = "QPushButton{color:red;background-color:rgb(";
+    QString temp2 = QString::number(0);
+
+    temp = temp + temp2 + "," + temp2 + "," + temp2 + ")}";
+
+    std::cout << temp.toStdString() <<  std::endl;
+
+    mButton[0]->setStyleSheet(temp);
     mButton[1]->setStyleSheet("QPushButton{color:red;background-color:rgb(255,255,255)}");
     mButton[2]->setStyleSheet("QPushButton{color:red;background-color:rgb(0,255,255)}");
     mButton[3]->setStyleSheet("QPushButton{color:red;background-color:rgb(0,139,139)}");
@@ -674,7 +682,9 @@ void Buttons::setColor(QPushButton* ptrBtn[][6], int i, int j) {
 
     pal = ptrBtn[i][j]->palette();
     pal.setColor(QPalette::Button, newColor);
+    pal.setColor(QPalette::Background, newColor);
     ptrBtn[i][j]->setPalette(pal);
+
     ptrBtn[i][j]->setAutoFillBackground(true);
     // set newColor to be curColor
     curColor = newColor;
@@ -690,6 +700,7 @@ void Buttons::setColor(QPushButton* ptrBtn) {
     QPalette pal;
     pal = ptrBtn->palette();
     pal.setColor(QPalette::Button, newColor);
+    pal.setColor(QPalette::Background, newColor);
     ptrBtn->setPalette(pal);
     ptrBtn->setAutoFillBackground(true);
     // set newColor to be curColor
@@ -830,5 +841,16 @@ void Buttons::printP(QColor color){
 QColor Buttons::getPreColor(int idx) {
     QColor color;
     color = mButton[idx]->palette().color(QPalette::Button);
+    int r,g,b;
+    color.getRgb(&r, &g, &b);
+
+    QString temp = "QPushButton{color:red;background-color:rgb(";
+    QString tempr = QString::number(r);
+    QString tempg = QString::number(g);
+    QString tempb = QString::number(b);
+
+    temp = temp + tempr + "," + tempg + "," + tempb + ")}";
+
+    cur->setStyleSheet(temp);
     return color;
 }

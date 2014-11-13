@@ -9,6 +9,7 @@
 #include <QMainWindow>
 #include <QGroupBox>
 #include <QDialogButtonBox>
+#include <iostream>
 
 #include "myGridLayout.h"
 #include "colorwheel.h"
