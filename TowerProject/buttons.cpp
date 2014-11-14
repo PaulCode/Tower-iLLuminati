@@ -9,116 +9,48 @@
 #include <QTime>
 #include <QTimeEdit>
 #include <QComboBox>
-#include <QGraphicsScene>
-#include <QGraphicsView>
 #include <QPixmap>
-#include <QGraphicsPixmapItem>
 #include <QMenuBar>
 #include <QPlainTextEdit>
 #include <QDir>
 #include <QFileDialog>
 #include <QFile>
 #include <QString>
-#include <iostream>
 #include <string>
 #include <QObject>
-//#include <QLCDNumber>
 #include <QDialogButtonBox>
 #include <QMessageBox>
 #include <QMainWindow>
+#include <iostream>
 
 #include "colorwheel.cpp"
+#include "buttons.h"
+
 using namespace std;
 
-#include "buttons.h"
-/*
-  void Buttons::setMyGridLayout(int x, int y) {
-  myGridLayout a(x,y);
-  *myGrid = &a;
-  }
-*/
 void Buttons::setHeight(QPlainTextEdit *edit, int nRows) { 
     QFontMetrics m (edit -> font()) ;
     int RowHeight = m.lineSpacing() ;
     edit -> setFixedHeight  (nRows * RowHeight) ;
 }
 
-void Buttons::setColor(QPushButton* ptrBtn[][4], int i, int j, QColor color) {
-    QPalette pal;
-    pal = ptrBtn[i][j]->palette();
-    pal.setColor(QPalette::Button, color);
-    ptrBtn[i][j]->setPalette(pal);
-    ptrBtn[i][j]->setAutoFillBackground(true);
-}
-void Buttons::setColor(QPushButton* ptrBtn[][6], int i, int j, QColor color) {
-    QPalette pal;
-    pal = ptrBtn[i][j]->palette();
-    pal.setColor(QPalette::Button, color);
-    ptrBtn[i][j]->setPalette(pal);
-    ptrBtn[i][j]->setAutoFillBackground(true);
-}
-
-/*
-  void Buttons::createMenu() {
-  menuBar = new QMenuBar;
-  fileMenu = new QMenu(tr("&File"), this);
-  exitAction = fileMenu->addAction(tr("E&xit"));
-  menuBar->addMenu(fileMenu);
-  connect(exitAction, SIGNAL(triggered()), this, SLOT(accept()));
-  }*/
-
-void Buttons::wbrowBtnClicked() {//load a specific file 
-    //QFileDialog wdialog = new QFileDialog();
-    //getOpenFileName(this, tr("Open File"), QDir::currentPath(), tr("Wave files (*.wav);;Tan files (*.tan);;All files (*.*)"), 0, QFileDialog::DontUseNativeDialog);
-    //wdialog->setAcceptMode(QFileDialog::AcceptSave); //To save files,default is open mode.
-    filename = QFileDialog::getOpenFileName(this, tr("Open file"), "/home/jenny/480/qt/tower/", tr("Wave files (*.wav);;Tan files (*.tan);;All files (*.*)"));
-    wedit->insertPlainText(filename);
-}
-void Buttons::tbrowBtnClicked() { //load a specific file 
-    //QFileDialog *tdialog = new QFileDialog();
-    //tdialog->setAcceptMode(QFileDialog::AcceptSave);//To save files,default is open mode.
+void Buttons::tbrowBtnClicked() {
     filename = QFileDialog::getOpenFileName(this, tr("Open file"), "/home/jenny/480/qt/tower/", tr("Tan files (*.tan);;Wave files (*.wav);;All files (*.*)"));
     tedit->insertPlainText(filename);
 }
-
-/*
-  void Buttons::saveme() {
-  if(FilePath.isEmpty())
-  saveFileAs();
-  else
-  saveFile(FilePath);
-  }
-  void Buttons::saveFile(const QString &name) { //save the existing file 
-  QFile file(name);
-  if (file.open(QIODevice::WriteOnly|QIODevice::Text)) {
-  file.write(ui->textEdit->toPlainText().toUtf8());
-  }
-  }
-  void Buttons::saveFileAs() { //save as a new file 
-  FilePath = QFileDialog::getSaveFileName(this);
-  if(FilePath.isEmpty())
-  return;
-  saveFile(mFilePath);
-  }
-*/
 
 void Buttons::open() {
     QMessageBox::information(this, tr("Information"), tr("Open"));
 }
 
 Buttons::Buttons(QWidget *parent)
-    //    : QObject(parent) {
     : QWidget(parent) {
 
-
     QHBoxLayout *hbox9 = new QHBoxLayout(this);
-    // for menuBar: crashed, walk the other way around
-    //hbox9->setMenuBar(menuBar);
     QVBoxLayout *vbox = new QVBoxLayout();
 
     // hbox10 for 5 images
     QHBoxLayout *hbox10 = new QHBoxLayout();
-
     for (int i = 0; i < 5; ++i) {        
         gridView[i] = new QGridLayout();
         gridView[i]->setSpacing(3);
@@ -169,23 +101,6 @@ Buttons::Buttons(QWidget *parent)
     hbox10->addLayout(gridView[3]);  // P
     hbox10->addLayout(gridView[2]);  // R
     hbox10->addLayout(gridView[4]);
-    /*
-      QPushButton *img1 = new QPushButton(QIcon(":/images/m"),tr(" "),this);
-      QPushButton *img2 = new QPushButton(QIcon(":/images/h"),tr(" "),this);
-      QPushButton *img3 = new QPushButton(QIcon(":/images/e"),tr(" "),this);
-      QPushButton *img4 = new QPushButton(QIcon(":/images/p"),tr(" "),this);
-      QPushButton *img5 = new QPushButton(QIcon(":/images/r"),tr(" "),this);
-      img1->setFixedSize(120,280);
-      img2->setFixedSize(120,280);
-      img3->setFixedSize(120,280);
-      img4->setFixedSize(120,280);
-      img5->setFixedSize(120,280);
-      hbox10->addWidget(img1);
-      hbox10->addWidget(img2);
-      hbox10->addWidget(img3);
-      hbox10->addWidget(img4);
-      hbox10->addWidget(img5);
-    */
     vbox->addLayout(hbox10);
 
     
@@ -211,59 +126,23 @@ Buttons::Buttons(QWidget *parent)
     vbox->addLayout(hbox1);
 
 
-    // two file open dialog hboxes hboxw, hboxt
-    QHBoxLayout *hboxw = new QHBoxLayout();
+    // .tan file open dialog hboxes hboxw, hboxt
     QHBoxLayout *hboxt = new QHBoxLayout();
-    QLabel *wav = new QLabel;
-    wav->setText(".wav File:");
     QLabel *tan = new QLabel;
     tan->setText(".tan File: ");
-    wedit = new QPlainTextEdit;
     tedit = new QPlainTextEdit;
-    wedit->setFont(QFont ("Courier", 10));
     tedit->setFont(QFont ("Courier", 10));
-    setHeight(wedit, 2);
     setHeight(tedit, 2);
-    //QPushButton *wbrow  = new QPushButton(QIcon(":/images/doc-open"), tr("&Browse"), this);
-    //connect(wbrow, SIGNAL(released()), this, SLOT(wbrowBtnClicked()));
-    //wbrow->setFixedSize(80, 30);
-    //hboxw->addWidget(wbrow);
     QPushButton *tbrow  = new QPushButton(QIcon(":/images/doc-open"), tr("&Browse"), this);
     tbrow->setFixedSize(80, 30);
-    hboxw->addWidget(wav);
-    hboxw->addWidget(wedit);
     hboxt->addWidget(tan);
     hboxt->addWidget(tedit);
     hboxt->addWidget(tbrow);
-    /*
-    // for fileDialogs for the two wbrow tbrow button
-    QFileDialog *wdialog = new QFileDialog();
-    wdialog->setAcceptMode(QFileDialog::AcceptSave);//To save files,default is open mode.
-    QFileDialog *tdialog = new QFileDialog();
-    //tdialog->setAcceptMode(QFileDialog::AcceptSave);//To save files,default is open mode.
-    QStringList wfilters, tfilters;
-    wfilters << "Wave files (*.wav)" << "Tan files (*.tan)" << "Any files (*)";
-    tfilters << "Tan files (*.tan)" << "Wave files (*.wav)" << "Any files (*)";
-    wdialog->setNameFilters(wfilters);
-    tdialog->setNameFilters(tfilters);
-    //wdialog->exec();
-    //tdialog->exec();
-    */
-    // button click activities
     connect(tbrow, SIGNAL(released()), this, SLOT(tbrowBtnClicked()));
-    
 
+    
+    // for Save-Pause line buttons
     QHBoxLayout *hbox2 = new QHBoxLayout();
-    /*
-      left = new QPushButton(QIcon(":/images/leftI"), tr(" Left "), this);
-      right = new QPushButton(QIcon(":/images/rightI"), tr("Right"), this);
-      up = new QPushButton(QIcon(":/images/upI"), tr("Up"), this);
-      down = new QPushButton(QIcon(":/images/downI"), tr("Down"), this);
-      upleft = new QPushButton(QIcon(":/images/upleftI"), tr("UpLeft"), this);
-      upright = new QPushButton(QIcon(":/images/uprightI"), tr("UpRight"), this);
-      downleft = new QPushButton(QIcon(":/images/downleftI"), tr("DownLeft"), this);
-      downright = new QPushButton(QIcon(":/images/downrightI"), tr("DownRight"), this);
-    */
     save = new QPushButton(QIcon(":/images/saveI"), tr(" Save "), this);
     play = new QPushButton(QIcon(":/images/playhsI"), tr(" Play "), this);
     stop = new QPushButton(QIcon(":/images/stophsI"), tr(" Stop "), this);
@@ -272,15 +151,6 @@ Buttons::Buttons(QWidget *parent)
     minus = new QPushButton(QIcon(":/images/minusI"), tr("Minus"), this);
     duplicate = new QPushButton(QIcon(":/images/duplicateI"), tr("Duplicate"), this);
     clear = new QPushButton(QIcon(":/images/clearI"), tr("Clear"), this);
-    /*
-      left->setFixedSize(40, 40);
-      right->setFixedSize(40, 40);
-      up->setFixedSize(40,40);
-      down->setFixedSize(40,40);
-      upleft->setFixedSize(40,40);
-      upright->setFixedSize(40,40);
-      downleft->setFixedSize(40,40);
-      downright->setFixedSize(40,40);  */
     save->setFixedSize(80,30);
     play->setFixedSize(80,30);
     stop->setFixedSize(80,30);
@@ -289,24 +159,8 @@ Buttons::Buttons(QWidget *parent)
     minus->setFixedSize(80,30);
     duplicate->setFixedSize(80,30);
     clear->setFixedSize(80,30);
-    /*
+
     // for 8 direction square
-    QHBoxLayout *hbox6 = new QHBoxLayout();
-    QHBoxLayout *hbox61 = new QHBoxLayout();
-    QHBoxLayout *hbox62 = new QHBoxLayout();
-    hbox61->addWidget(upleft, 0, Qt::AlignRight);
-    hbox61->addWidget(up, 0, Qt::AlignRight);
-    hbox61->addWidget(upright, 0, Qt::AlignRight);
-    hbox6->addWidget(left, 1, Qt::AlignLeft);  // middle
-    hbox6->addWidget(right, 0, Qt::AlignRight);
-    hbox62->addWidget(downleft, 0, Qt::AlignRight);
-    hbox62->addWidget(down, 0, Qt::AlignRight);
-    hbox62->addWidget(downright, 0, Qt::AlignRight);
-    QVBoxLayout *vboxSquare = new QVBoxLayout();
-    vboxSquare->addLayout(hbox61);
-    vboxSquare->addLayout(hbox6);
-    vboxSquare->addLayout(hbox62);
-    */
     QGridLayout* direction = new QGridLayout();
     direction->setSpacing(5);
     dir[0][0] = new QPushButton(QIcon(":/images/upleftI"), tr(""), this);
@@ -338,9 +192,6 @@ Buttons::Buttons(QWidget *parent)
     hbox2->addWidget(play, 0, Qt::AlignRight);
     hbox2->addWidget(stop, 0, Qt::AlignRight);
     hbox2->addWidget(pause, 0, Qt::AlignRight);
-    //vbox->addLayout(hbox6); // remove this line from top commands
-    // add two file open hbox
-    //vbox->addLayout(hboxw);  // remove this line cause eventually this file will be included in the .tan file
     vbox->addLayout(hboxt);
     vbox->addLayout(hbox2);
 
@@ -353,16 +204,9 @@ Buttons::Buttons(QWidget *parent)
     QHBoxLayout *hbox4 = new QHBoxLayout();
     QHBoxLayout *hbox5 = new QHBoxLayout();
     vbox->setSpacing(1);
+
     // two time boxes
     QLabel *atimel = new QLabel;
-    //QLCDNumber *lcdNumber1 = new QLCDNumber();
-    //lcdNumber1->setNumDigits(9);
-    //lcdNumber1->display(00:00.000);
-    /*
-      QTimer *timer = new QTimer(this);
-      timer->start(1000);
-      connect(timer, SIGNAL(timeout()), lcdNumber1, SLOT(tick()));
-    */
     QTimeEdit *atimeEdit = new QTimeEdit(QTime::currentTime());
     atimeEdit->setTimeRange(QTime(0, 0, 0, 0), QTime(23, 59, 0, 0));
     QLabel *btimel = new QLabel;
@@ -371,39 +215,34 @@ Buttons::Buttons(QWidget *parent)
     atimel->setText(tr("  Frame Start Time"));
     btimel->setText(tr("Increment Amount"));
     hbox->addWidget(atimeEdit);
-    //hbox->addWidget(lcdNumber1);
     hbox->addWidget(atimel);
     hbox7->addWidget(btimeEdit);
-    //hbox7->addWidget(timer);
     hbox7->addWidget(btimel);
     
     // integer spinbox
     QLabel *alabel = new QLabel(tr("Red"));
-    QSpinBox *aspinBox = new QSpinBox;
-    aspinBox->setRange(0, 255);
-    aspinBox->setSingleStep(1);
-    aspinBox->setValue(255);
+    rspinBox = new QSpinBox;
+    rspinBox->setRange(0, 255);
+    rspinBox->setSingleStep(1);
+    rspinBox->setValue(255);
     QLabel *blabel = new QLabel(tr("Green"));
-    QSpinBox *bspinBox = new QSpinBox;
+    gspinBox = new QSpinBox;
+    gspinBox->setRange(0, 255);
+    gspinBox->setSingleStep(1);
+    gspinBox->setValue(255);
+    QLabel *clabel = new QLabel(tr("Blue"));
+    bspinBox = new QSpinBox;
     bspinBox->setRange(0, 255);
     bspinBox->setSingleStep(1);
     bspinBox->setValue(255);
-    QLabel *clabel = new QLabel(tr("Blue"));
-    QSpinBox *cspinBox = new QSpinBox;
-    cspinBox->setRange(0, 255);
-    cspinBox->setSingleStep(1);
-    cspinBox->setValue(255);
-    hbox3->addWidget(aspinBox);
+    hbox3->addWidget(rspinBox);
     hbox3->addWidget(alabel);
-    hbox4->addWidget(bspinBox);
+    hbox4->addWidget(gspinBox);
     hbox4->addWidget(blabel);
-    hbox5->addWidget(cspinBox);
+    hbox5->addWidget(bspinBox);
     hbox5->addWidget(clabel);
     vbox2->addLayout(hbox);
     vbox2->addLayout(hbox7);
-    //vbox2->addLayout(hbox3);
-    //vbox2->addLayout(hbox4);
-    //vbox2->addLayout(hbox5);
     QVBoxLayout* vboxRgb = new QVBoxLayout();  // for R G B
     vboxRgb->addLayout(hbox3);
     vboxRgb->addLayout(hbox4);
@@ -416,40 +255,20 @@ Buttons::Buttons(QWidget *parent)
     QLabel *curlabel = new QLabel(tr("Preview"));
     pre = new QPushButton();
     cur = new QPushButton();
-    //QPushButton *tmp = new QPushButton(QIcon(":/images/down"), tr(""),this);
     pre->setFixedSize(80,60);
-    //pre->setFlat(true);   //invisible at beginning, but will show up later
     cur->setFixedSize(80,60);
-    //tmp->setFixedSize(30,30);
     vbox3->setAlignment(pre, Qt::AlignCenter);
-    //vbox3->setAlignment(tmp, Qt::AlignCenter);
     vbox3->setAlignment(cur, Qt::AlignCenter);
-    //vbox3->addWidget(prelabel);
-    //vbox3->addWidget(curlabel);
     vbox3->addWidget(pre);
-    //vbox3->addWidget(tmp, Qt::AlignRight);  // remove this arrow button for now
     vbox3->addWidget(cur);
+    connect(pre, SIGNAL(released()), this, SLOT(preBtnClicked()));
+    connect(cur, SIGNAL(released()), this, SLOT(curBtnClicked()));
     QHBoxLayout* hboxRgb = new QHBoxLayout();
     hboxRgb->addLayout(vboxRgb);
     hboxRgb->addLayout(vbox3);
-    // hboxRgb    
     QHBoxLayout *hbox11 = new QHBoxLayout();
-    /*
-      QPushButton *color = new QPushButton(QIcon(":/images/color"), tr(""),this);
-      color->setFixedSize(150, 150);
-      QGraphicsScene *scene = new QGraphicsScene();
-      QGraphicsView *view;// = new QGraphicsView();
-      QGraphicsPixmapItem item(QPixmap(":/images/color"));
-      view->addItem(&item);
-      QPixmap img = new QPixmap(":/images/color");
-      QLabel *imgl = new QLabel();
-      imgl->setPixmap(img);
-    */
     ColorWheel* color = new ColorWheel();
-    //hbox11->addLayout(vbox3);
-    //hbox11->addLayout(hboxRgb);
     vbox2->addLayout(hboxRgb); // R G B preview hbox
-    //hbox11->addLayout(vboxSquare);
 
     // added a line in between the two part
     QFrame *line2 = new QFrame(this);    // <<< this does the trick
@@ -464,21 +283,18 @@ Buttons::Buttons(QWidget *parent)
     vbox->addLayout(hbox11);
 
     
-    // for button background color
+    // for predefined color button background colors
     QHBoxLayout *hbox8 = new QHBoxLayout();
     for (int i = 0; i < 17; i++) {
         mButton[i] = new QPushButton(this);
         mButton[i]->setFixedSize(31,31);
-        //mButton[i][j]->setStyleSheet("QPushButton{color:red;background-color:rgb(200,155,100)}");
         hbox8->addWidget(mButton[i]);
     }
 
     QString temp = "QPushButton{color:red;background-color:rgb(";
     QString temp2 = QString::number(0);
-
     temp = temp + temp2 + "," + temp2 + "," + temp2 + ")}";
-
-    std::cout << temp.toStdString() <<  std::endl;
+    //std::cout << temp.toStdString() <<  std::endl;
 
     mButton[0]->setStyleSheet(temp);
     mButton[1]->setStyleSheet("QPushButton{color:red;background-color:rgb(255,255,255)}");
@@ -516,12 +332,8 @@ Buttons::Buttons(QWidget *parent)
     connect(mButton[16], SIGNAL(released()), this, SLOT(preColorClicked16()));
     vbox->addLayout(hbox8);
 
-    // myGridLayout part
-    //myGridLayout myGrid(12, 6);
-    //myGrid.setSpacing(5);
-    //mGrid = new myGridLayout(12, 6, this);
-    //setLayout(mGrid->ptrGrid);
-    
+
+    // left hand side grid section
     QGridLayout* grid = new QGridLayout();
     grid->setSpacing(5);
     for (int i = 0; i < 12; ++i ) {
@@ -605,17 +417,17 @@ Buttons::Buttons(QWidget *parent)
     connect(mButt[11][5], SIGNAL(released()), this, SLOT(gridLayoutClicked115()));   
     setLayout(grid);
 
-    // try to set a frame in the grid
+    // try to set a frame inside the grid
     QFrame* line[28];
     for (int i = 0; i < 28; ++i) {        
-        line[i] = new QFrame();    // <<< this does the trick
+        line[i] = new QFrame(); 
         line[i]->setLineWidth(3);
         line[i]->setMidLineWidth(2);
         line[i]->setFrameShadow(QFrame::Raised);
         line[i]->setFrameShape(QFrame::VLine);
     }
     for (int i = 20; i < 28; ++i) {        
-        line[i] = new QFrame();    // <<< this does the trick
+        line[i] = new QFrame(); 
         line[i]->setLineWidth(3);
         line[i]->setMidLineWidth(2);
         line[i]->setFrameShadow(QFrame::Raised);
@@ -634,29 +446,111 @@ Buttons::Buttons(QWidget *parent)
         grid->addWidget(line[i], 10, i-23, Qt::AlignBottom);
     }
     
-    // added a line in between the two part
-    QFrame *linea1 = new QFrame(this);    // <<< this does the trick
+    // added a line in between left and right side
+    QFrame *linea1 = new QFrame(this);    
     linea1->setLineWidth(3);
     linea1->setMidLineWidth(2);
     linea1->setFrameShape(QFrame::VLine);
     linea1->setFrameShadow(QFrame::Raised);
-    //linea1->setPalette(QPalette(QColor(255, 0, 0)));  // here
+    //linea1->setPalette(QPalette(QColor(255, 0, 0)));  // could set line color here
     hbox9->addLayout(grid);
     hbox9->addWidget(linea1);
     hbox9->addLayout(vbox);
 }
 
+void Buttons::setColor(QPushButton* ptrBtn[][4], int i, int j, QColor color) {
+    int r,g,b;
+    color.getRgb(&r, &g, &b);
+    QString temp = "QPushButton{color:red;background-color:rgb(";
+    QString tempr = QString::number(r);
+    QString tempg = QString::number(g);
+    QString tempb = QString::number(b);
+    temp = temp + tempr + "," + tempg + "," + tempb + ")}";
+    ptrBtn[i][j]->setStyleSheet(temp); 
+}
+
+void Buttons::setColor(QPushButton* ptrBtn[][6], int i, int j, QColor color) {
+    int r,g,b;
+    color.getRgb(&r, &g, &b);
+    QString temp = "QPushButton{color:red;background-color:rgb(";
+    QString tempr = QString::number(r);
+    QString tempg = QString::number(g);
+    QString tempb = QString::number(b);
+    temp = temp + tempr + "," + tempg + "," + tempb + ")}";
+    ptrBtn[i][j]->setStyleSheet(temp); 
+}
+
+void Buttons::setColor(QPushButton* ptrBtn[][6], int i, int j) {
+    int r,g,b;
+    newColor.getRgb(&r, &g, &b);
+    QString temp = "QPushButton{color:red;background-color:rgb(";
+    QString tempr = QString::number(r);
+    QString tempg = QString::number(g);
+    QString tempb = QString::number(b);
+    temp = temp + tempr + "," + tempg + "," + tempb + ")}";
+    ptrBtn[i][j]->setStyleSheet(temp); 
+    // set newColor to be curColor
+    curColor = newColor;
+}
+
+void Buttons::setColorToDefault(QPushButton* ptrBtn) {
+    QString temp = "QPushButton{color:red;background-color:rgb(";
+    QString tempr = QString::number(211);
+    QString tempg = QString::number(211);
+    QString tempb = QString::number(211);
+    temp = temp + tempr + "," + tempg + "," + tempb + ")}";
+    ptrBtn->setStyleSheet(temp); 
+}
+
+void Buttons::setColor(QPushButton* ptrBtn) {
+    int r,g,b;
+    newColor.getRgb(&r, &g, &b);
+    QString temp = "QPushButton{color:red;background-color:rgb(";
+    QString tempr = QString::number(r);
+    QString tempg = QString::number(g);
+    QString tempb = QString::number(b);
+    temp = temp + tempr + "," + tempg + "," + tempb + ")}";
+    ptrBtn->setStyleSheet(temp); 
+    // set newColor to be curColor
+    curColor = newColor;
+}
+
+QColor Buttons::getPreColor(int idx) {
+    QColor color;
+    color = mButton[idx]->palette().color(QPalette::Button);
+    return color;
+}
+// overloaded for "pre" button slot function
+QColor Buttons::getPreCurColor(QPushButton* tmp) { 
+    QColor color;
+    color = tmp->palette().color(QPalette::Button);
+    return color;
+}
+
+void Buttons::preColorClicked(int idx) {
+    newColor = getPreColor(idx);        
+    setColor(cur);
+}
+
+void Buttons::setSpinBoxValue() {
+    int r,g,b;
+    newColor.getRgb(&r, &g, &b);
+    rspinBox->setValue(r);
+    gspinBox->setValue(g);
+    bspinBox->setValue(b);
+}
+
 void Buttons::addFrame(QGridLayout* grid) {
     QFrame* line[28];
     for (int i = 0; i < 28; ++i) {        
-        line[i] = new QFrame();    // <<< this does the trick
+        line[i] = new QFrame(); 
         line[i]->setLineWidth(3);
         line[i]->setMidLineWidth(2);
         line[i]->setFrameShadow(QFrame::Raised);
         line[i]->setFrameShape(QFrame::VLine);
     }
     for (int i = 20; i < 28; ++i) {        
-        line[i] = new QFrame();    // <<< this does the trick
+        line[i] = new QFrame(); 
         line[i]->setLineWidth(3);
         line[i]->setMidLineWidth(2);
         line[i]->setFrameShadow(QFrame::Raised);
@@ -674,37 +568,6 @@ void Buttons::addFrame(QGridLayout* grid) {
     for (int i = 24; i < 28; ++i) {        
         grid->addWidget(line[i], 9, i-24, Qt::AlignBottom);
     }
-}
-
-void Buttons::setColor(QPushButton* ptrBtn[][6], int i, int j) {
-    QPalette pal;
-
-
-    pal = ptrBtn[i][j]->palette();
-    pal.setColor(QPalette::Button, newColor);
-    pal.setColor(QPalette::Background, newColor);
-    ptrBtn[i][j]->setPalette(pal);
-
-    ptrBtn[i][j]->setAutoFillBackground(true);
-    // set newColor to be curColor
-    curColor = newColor;
-}
-void Buttons::setColorToDefault(QPushButton* ptrBtn) {
-    QPalette pal;
-    pal = ptrBtn->palette();
-    pal.setColor(QPalette::Button, QColor::fromRgb(211,211,211));  // light grey
-    ptrBtn->setPalette(pal);
-    ptrBtn->setAutoFillBackground(true);
-}
-void Buttons::setColor(QPushButton* ptrBtn) {
-    QPalette pal;
-    pal = ptrBtn->palette();
-    pal.setColor(QPalette::Button, newColor);
-    pal.setColor(QPalette::Background, newColor);
-    ptrBtn->setPalette(pal);
-    ptrBtn->setAutoFillBackground(true);
-    // set newColor to be curColor
-    curColor = newColor;
 }
 
 void Buttons::gridLayoutClicked00(){setColor(mButt,0,0);setColor(pre);curColor = newColor;setColorToDefault(cur);}
@@ -780,11 +643,6 @@ void Buttons::gridLayoutClicked113(){setColor(mButt,11,3);setColor(pre);curColor
 void Buttons::gridLayoutClicked114(){setColor(mButt,11,4);setColor(pre);curColor = newColor;setColorToDefault(cur);}
 void Buttons::gridLayoutClicked115(){setColor(mButt,11,5);setColor(pre);curColor = newColor;setColorToDefault(cur);}
 
-void Buttons::preColorClicked(int idx) {
-    newColor = getPreColor(idx);
-    setColor(cur);
-}
-
 void Buttons::printH(QColor color){ // LightSkyBlue 135,206,250
     for (int i = 0; i < 7; ++i) {
         setColor(mBut1, i, 0, color);
@@ -793,6 +651,7 @@ void Buttons::printH(QColor color){ // LightSkyBlue 135,206,250
     setColor(mBut1, 3, 1, color);
     setColor(mBut1, 3, 2, color);
 }
+
 void Buttons::printM(QColor color){ // 255,215,0
     for (int i = 0; i < 7; ++i) {
         setColor(mBut2, i, 0, color);
@@ -804,16 +663,18 @@ void Buttons::printM(QColor color){ // 255,215,0
         setColor(mBut2, 6, i, color);
     }
 }
-void Buttons::printE(QColor color){
-    for (int i = 0; i < 7; ++i) 
-        setColor(mBut5, i, 0, color);
-    for (int i = 0; i < 4; ++i) {        
-        setColor(mBut5, 0, i, color);
-        setColor(mBut5, 6, i, color);
+
+void Buttons::printP(QColor color){
+    for (int i = 0; i < 7; ++i)
+        setColor(mBut4, i, 0, color);
+    for (int i = 0; i < 4; ++i)
+        setColor(mBut4, i, 3, color);
+    for (int i = 1; i < 3; ++i) {        
+        setColor(mBut4, 0, i, color);
+        setColor(mBut4, 3, i, color);
     }
-    setColor(mBut5, 3, 1, color);
-    setColor(mBut5, 3, 2, color);
 }
+
 void Buttons::printR(QColor color){
     for (int i = 0; i < 7; ++i) 
         setColor(mBut3, i, 0, color);
@@ -827,30 +688,14 @@ void Buttons::printR(QColor color){
     setColor(mBut3, 5, 2, color);
     setColor(mBut3, 6, 3, color);
 }
-void Buttons::printP(QColor color){
-    for (int i = 0; i < 7; ++i)
-        setColor(mBut4, i, 0, color);
-    for (int i = 0; i < 4; ++i)
-        setColor(mBut4, i, 3, color);
-    for (int i = 1; i < 3; ++i) {        
-        setColor(mBut4, 0, i, color);
-        setColor(mBut4, 3, i, color);
+
+void Buttons::printE(QColor color){
+    for (int i = 0; i < 7; ++i) 
+        setColor(mBut5, i, 0, color);
+    for (int i = 0; i < 4; ++i) {        
+        setColor(mBut5, 0, i, color);
+        setColor(mBut5, 6, i, color);
     }
-}
-
-QColor Buttons::getPreColor(int idx) {
-    QColor color;
-    color = mButton[idx]->palette().color(QPalette::Button);
-    int r,g,b;
-    color.getRgb(&r, &g, &b);
-
-    QString temp = "QPushButton{color:red;background-color:rgb(";
-    QString tempr = QString::number(r);
-    QString tempg = QString::number(g);
-    QString tempb = QString::number(b);
-
-    temp = temp + tempr + "," + tempg + "," + tempb + ")}";
-
-    cur->setStyleSheet(temp);
-    return color;
+    setColor(mBut5, 3, 1, color);
+    setColor(mBut5, 3, 2, color);
 }
