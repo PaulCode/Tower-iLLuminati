@@ -19,5 +19,14 @@
         <file alias="downrightI">downright.png</file>
         <file alias="saveI">save.png</file>
         <file alias="down">down2.png</file>
+	<file alias="undoI">undo.png</file>
+	<file alias="redoI">redo.jpg</file>
+	<file alias="newI">new.png</file>
+	<file alias="cutI">cut.jpg</file>
+	<file alias="beginI">begin.jpg</file>
+	<file alias="lastI">last.png</file>
+	<file alias="doc-close">document-close.png</file>
+	<file alias="copyI">copy.png</file>
+	<file alias="pasteI">paste.png</file>
     </qresource>
 </RCC>

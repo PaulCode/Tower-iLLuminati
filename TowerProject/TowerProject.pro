@@ -18,21 +18,16 @@ SOURCES += main.cpp\
     grid.cpp \
     animation.cpp \
     pixelgroup.cpp \
-    buttons.cpp \
     colorwheel.cpp \
-    myGridLayout.cpp \
-    verticalbox.cpp
+    myGridLayout.cpp
 
 HEADERS  += mainwindow.h \
     pixel.h \
     grid.h \
     animation.h \
     pixelgroup.h \
-    buttons.h \
     colorwheel.h \
-    myGridLayout.h \
-    verticalbox.h
-
+    myGridLayout.h
 FORMS    +=
 
 RESOURCES += \
