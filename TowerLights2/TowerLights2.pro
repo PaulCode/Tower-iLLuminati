@@ -41,4 +41,5 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui
 
 OTHER_FILES += \
-    TowerGrid.qml
+    TowerGrid.qml \
+    windowScrol.qml

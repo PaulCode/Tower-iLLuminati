@@ -19,17 +19,23 @@ Rectangle {
                 border.width: 1
                 border.color: "black"
                 MouseArea {
+                    hoverEnabled: true
                     acceptedButtons: Qt.LeftButton | Qt.RightButton
                     anchors.fill: parent
-                    onClicked: {
-                        if(mouse.button == Qt.RightButton){
-                            parent.color = "grey"
-                        } else {
-                            parent.color = currentColor.colorToString()
-                        }
+                    onPressed: {
+                        parent.color = currentColor.colorToString()
                     }
                 }
             }
         }
+    }
+    Rectangle {
+        y:145
+        x:115
+        height: 305
+        width: 125
+        color: "transparent"
+        border.color: "black"
+        border.width: 5
     }
 }
